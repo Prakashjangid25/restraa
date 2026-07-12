@@ -34,7 +34,7 @@ export default function OrderConfirmation() {
         <div className="conf-details">
           <div className="conf-detail-row">
             <span className="conf-label">Order ID</span>
-            <span className="conf-value">{order.id}</span>
+            <span className="conf-value">{order.orderId}</span>
           </div>
           <div className="conf-detail-row">
             <span className="conf-label">Seat</span>

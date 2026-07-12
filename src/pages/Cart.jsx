@@ -31,6 +31,21 @@ export default function Cart() {
 
     // Try to save for max 4 seconds, navigate regardless
     const goToConfirmation = () => {
+      try {
+        const localOrders = JSON.parse(localStorage.getItem('restra_orders') || '[]');
+        const historicalOrder = {
+          id: orderData.orderId,
+          timestamp: new Date().toISOString(),
+          status: 'Preparing',
+          items: orderData.items,
+          seatNumber: orderData.seatNumber,
+          total: orderData.total
+        };
+        localStorage.setItem('restra_orders', JSON.stringify([historicalOrder, ...localOrders]));
+      } catch (e) {
+        console.error('Failed to save order to local history:', e);
+      }
+
       clearCart();
       navigate('/confirmation', { state: { order: orderData } });
     };
